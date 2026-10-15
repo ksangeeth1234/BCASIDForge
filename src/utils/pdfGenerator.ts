@@ -207,70 +207,78 @@ export const generateBulkIDPDF = async (
         doc.line(posX, posY + headerHeight + 2.8, posX + cardWidth, posY + headerHeight + 2.8);
 
         // 5. Card Pass Number & Reference
-        const contentStartY = posY + headerHeight + 6;
+        const contentStartY = posY + headerHeight + 5.5;
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(5);
+        doc.setFontSize(5.2);
         doc.setTextColor(120, 130, 140);
         doc.text('PASS NO:', posX + 3, contentStartY);
 
         doc.setFont('courier', 'bold');
-        doc.setFontSize(6.5);
+        doc.setFontSize(7.2);
         doc.setTextColor(0, 45, 98);
         doc.text(currentPassNumber, posX + cardWidth - 3, contentStartY, { align: 'right' });
 
         // 6. Programme Name (with dynamic font sizing)
-        const progY = contentStartY + 5;
+        const progY = contentStartY + 4.8;
         doc.setFont('helvetica', 'normal');
-        doc.setFontSize(4.5);
+        doc.setFontSize(5.0);
         doc.setTextColor(100, 110, 120);
         doc.text('ACADEMIC PROGRAMME', posX + cardWidth / 2, progY, { align: 'center' });
 
         const progName = config.programmeName || 'BSc (Hons) Computer Science';
-        let progFontSize = 7.5;
+        let progFontSize = 11.5;
         if (progName.length > 45) {
-          progFontSize = 5.8;
-        } else if (progName.length > 30) {
-          progFontSize = 6.4;
+          progFontSize = 8.5;
+        } else if (progName.length > 28) {
+          progFontSize = 10.0;
         }
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(progFontSize);
         doc.setTextColor(15, 23, 42);
         const splitTitle = doc.splitTextToSize(progName, cardWidth - 8);
-        doc.text(splitTitle, posX + cardWidth / 2, progY + 4, { align: 'center' });
+        const titleLineHeight = progFontSize * 0.38;
+        doc.text(splitTitle, posX + cardWidth / 2, progY + 4.2, { align: 'center' });
 
-        // 7. Intake & Academic Year Box
-        const boxY = progY + 12;
+        // 7. Intake & Academic Year Box (with large, bold, prominent typography)
+        const titleBlockHeight = splitTitle.length * titleLineHeight;
+        const boxY = progY + 4.2 + titleBlockHeight + 1.5;
+        const boxHeight = 15.0;
+
         doc.setFillColor(248, 250, 252);
         doc.setDrawColor(226, 232, 240);
-        doc.setLineWidth(0.2);
-        doc.roundedRect(posX + 3, boxY, cardWidth - 6, 9.5, 1, 1, 'FD');
+        doc.setLineWidth(0.25);
+        doc.roundedRect(posX + 3, boxY, cardWidth - 6, boxHeight, 1.2, 1.2, 'FD');
 
+        // Intake Row
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(4.8);
+        doc.setFontSize(5.8);
         doc.setTextColor(100, 116, 139);
-        doc.text('INTAKE:', posX + 5, boxY + 3.8);
+        doc.text('INTAKE:', posX + 5, boxY + 5.5);
 
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(5.2);
+        doc.setFontSize(9.0);
         doc.setTextColor(200, 16, 46);
-        doc.text(currentIntake, posX + cardWidth - 5, boxY + 3.8, { align: 'right' });
+        doc.text(currentIntake, posX + cardWidth - 5, boxY + 5.5, { align: 'right' });
 
+        // Divider Line
         doc.setDrawColor(226, 232, 240);
-        doc.line(posX + 4, boxY + 4.8, posX + cardWidth - 4, boxY + 4.8);
+        doc.line(posX + 4.5, boxY + 7.8, posX + cardWidth - 4.5, boxY + 7.8);
 
+        // Academic Year Row
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(4.8);
+        doc.setFontSize(5.8);
         doc.setTextColor(100, 116, 139);
-        doc.text('ACADEMIC YEAR:', posX + 5, boxY + 8);
+        doc.text('ACADEMIC YEAR:', posX + 5, boxY + 12.6);
 
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(5.2);
+        doc.setFontSize(9.0);
         doc.setTextColor(0, 45, 98);
-        doc.text(currentAcademicYear, posX + cardWidth - 5, boxY + 8, { align: 'right' });
+        doc.text(currentAcademicYear, posX + cardWidth - 5, boxY + 12.6, { align: 'right' });
 
-        // 8. Barcode Simulation Graphic — centered
-        const barcodeY = boxY + 12;
+        // 8. Barcode Graphic (if enabled) & Validity Notice
+        const noticeY = config.showBarcode ? boxY + boxHeight + 10.5 : boxY + boxHeight + 4.5;
         if (config.showBarcode) {
+          const barcodeY = boxY + boxHeight + 2;
           const barWidths = [0.4, 0.2, 0.6, 0.2, 0.4, 0.6, 0.2, 0.4, 0.2, 0.6, 0.4, 0.2, 0.6, 0.2, 0.4, 0.2, 0.6, 0.4, 0.2, 0.4];
           const gapBetweenBars = 0.4;
           // Calculate total barcode width to center it
@@ -278,7 +286,7 @@ export const generateBulkIDPDF = async (
           let currentBarX = posX + (cardWidth - totalBarcodeWidth) / 2;
           doc.setFillColor(30, 41, 59);
           barWidths.forEach((w) => {
-            doc.rect(currentBarX, barcodeY, w, 4, 'F');
+            doc.rect(currentBarX, barcodeY, w, 3.8, 'F');
             currentBarX += w + gapBetweenBars;
           });
 
@@ -290,12 +298,12 @@ export const generateBulkIDPDF = async (
 
         // Validity notice
         doc.setFont('helvetica', 'italic');
-        doc.setFontSize(3.8);
+        doc.setFontSize(4.2);
         doc.setTextColor(130, 140, 150);
         doc.text(
           'Official temporary pass. Present on campus upon request.',
           posX + cardWidth / 2,
-          barcodeY + 9,
+          noticeY,
           { align: 'center' }
         );
 

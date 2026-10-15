@@ -22,13 +22,13 @@ export const IDCardPreview: React.FC<IDCardPreviewProps> = ({
 
   // Smart font size calculation for Programme Name to avoid clipping or overflow
   const progLength = config.programmeName?.length || 0;
-  let programmeFontSize = 'text-[15px] leading-tight';
+  let programmeFontSize = 'text-[22px] leading-tight';
   if (progLength > 48) {
-    programmeFontSize = 'text-[11px] leading-snug';
+    programmeFontSize = 'text-[15px] leading-snug';
   } else if (progLength > 36) {
-    programmeFontSize = 'text-[12.5px] leading-tight';
+    programmeFontSize = 'text-[17px] leading-tight';
   } else if (progLength > 24) {
-    programmeFontSize = 'text-[14px] leading-tight';
+    programmeFontSize = 'text-[19.5px] leading-tight';
   }
 
   // Base dimensions matching 55mm x 85mm standard ratio: 330px x 510px
@@ -104,36 +104,36 @@ export const IDCardPreview: React.FC<IDCardPreviewProps> = ({
           
           {/* Card Reference / Pass Serial */}
           <div className="flex items-center justify-between border-b border-slate-200/80 pb-1.5 px-1">
-            <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
               PASS NO:
             </span>
-            <span className="font-mono text-[11px] font-extrabold text-[#002d62] tracking-wider bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+            <span className="font-mono text-[12px] font-extrabold text-[#002d62] tracking-wider bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
               {currentPassNumber}
             </span>
           </div>
 
           {/* Programme Name with Auto-adjusting Typography */}
-          <div className="my-auto py-2">
-            <div className="text-[9px] uppercase tracking-widest font-bold text-slate-400 mb-1">
+          <div className="my-auto py-1">
+            <div className="text-[10px] uppercase tracking-widest font-bold text-slate-400 mb-1">
               Academic Programme
             </div>
-            <div className={`font-extrabold text-[#0f172a] tracking-tight px-1 font-sans ${programmeFontSize}`}>
+            <div className={`font-black text-[#0f172a] tracking-tight px-1 font-sans ${programmeFontSize}`}>
               {config.programmeName || 'BSc (Hons) Computer Science'}
             </div>
           </div>
 
           {/* Intake & Academic Year Information Grid */}
-          <div className="bg-slate-50/90 rounded-lg p-2.5 border border-slate-200/90 space-y-1.5 my-1">
-            <div className="flex justify-between items-center text-[10.5px]">
-              <span className="font-semibold text-slate-500 uppercase text-[9px] tracking-wider">Intake:</span>
-              <span className="font-bold text-[#c8102e] tracking-tight">
+          <div className="bg-slate-50/95 rounded-xl p-3.5 border border-slate-200/90 space-y-2.5 my-1 shadow-xs">
+            <div className="flex justify-between items-center">
+              <span className="font-bold text-slate-500 uppercase text-[10.5px] tracking-wider">Intake:</span>
+              <span className="font-black text-[#c8102e] tracking-tight text-[16px]">
                 {currentIntake}
               </span>
             </div>
-            <div className="h-[1px] bg-slate-200/70 w-full" />
-            <div className="flex justify-between items-center text-[10.5px]">
-              <span className="font-semibold text-slate-500 uppercase text-[9px] tracking-wider">Academic Year:</span>
-              <span className="font-bold text-[#002d62] tracking-tight">
+            <div className="h-[1px] bg-slate-200/80 w-full" />
+            <div className="flex justify-between items-center">
+              <span className="font-bold text-slate-500 uppercase text-[10.5px] tracking-wider">Academic Year:</span>
+              <span className="font-black text-[#002d62] tracking-tight text-[16px]">
                 {config.academicYear || '2026/2027'}
               </span>
             </div>
@@ -142,7 +142,7 @@ export const IDCardPreview: React.FC<IDCardPreviewProps> = ({
           {/* Barcode & Validity Notice */}
           <div className="pt-1 flex flex-col items-center w-full">
             {config.showBarcode && (
-              <div className="flex flex-col items-center justify-center w-full">
+              <div className="flex flex-col items-center justify-center w-full mb-1">
                 {/* Visual Barcode Graphic — centered with mx-auto */}
                 <div className="flex items-end justify-center h-6 gap-[2.5px] w-full max-w-[200px] mx-auto mb-1">
                   {[3, 1, 4, 1, 2, 4, 1, 3, 2, 1, 4, 2, 1, 3, 2, 4, 1, 2, 3, 1, 3, 2, 4, 1].map((weight, i) => (
@@ -161,7 +161,7 @@ export const IDCardPreview: React.FC<IDCardPreviewProps> = ({
                 </div>
               </div>
             )}
-            <p className="text-[7.5px] text-slate-500 italic mt-1 leading-tight text-center w-full px-1">
+            <p className="text-[8px] text-slate-500 italic leading-tight text-center w-full px-1">
               Official temporary pass. Present to campus security &amp; faculty on request.
             </p>
           </div>

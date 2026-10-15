@@ -27,7 +27,7 @@ const DEFAULT_CONFIG: IDCardConfig = {
   numberOfCards: 9, // Exactly 1 full A4 sheet
   idPrefix: 'BCAS-TMP-',
   startNumber: 1001,
-  showBarcode: true,
+  showBarcode: false,
   issueDate: new Date().toISOString().split('T')[0],
   validUntil: 'Semester End'
 };
