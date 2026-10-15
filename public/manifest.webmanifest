@@ -1,0 +1,23 @@
+{
+  "name": "BCAS IDForge - Temporary Student ID Generator",
+  "short_name": "BCAS IDForge",
+  "description": "Professional Temporary Student ID Generator & Bulk A4 Printing System for BCAS Campus administrative staff.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#b91c1c",
+  "icons": [
+    {
+      "src": "/bcas-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/bcas-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
