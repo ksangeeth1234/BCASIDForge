@@ -22,13 +22,13 @@ export const IDCardPreview: React.FC<IDCardPreviewProps> = ({
 
   // Smart font size calculation for Programme Name to avoid clipping or overflow
   const progLength = config.programmeName?.length || 0;
-  let programmeFontSize = 'text-[22px] leading-tight';
+  let programmeFontSize = 'text-[25px] leading-tight';
   if (progLength > 48) {
-    programmeFontSize = 'text-[15px] leading-snug';
+    programmeFontSize = 'text-[18px] leading-snug';
   } else if (progLength > 36) {
-    programmeFontSize = 'text-[17px] leading-tight';
+    programmeFontSize = 'text-[20px] leading-tight';
   } else if (progLength > 24) {
-    programmeFontSize = 'text-[19.5px] leading-tight';
+    programmeFontSize = 'text-[23px] leading-tight';
   }
 
   // Base dimensions matching 55mm x 85mm standard ratio: 330px x 510px
@@ -67,12 +67,9 @@ export const IDCardPreview: React.FC<IDCardPreviewProps> = ({
             <div className="text-[10px] tracking-[0.25em] font-extrabold text-red-100 uppercase opacity-90 mb-0.5">
               BCAS CAMPUS
             </div>
-            <h2 className="text-[16px] font-black tracking-wider text-white uppercase leading-none font-sans drop-shadow-sm">
+            <h2 className="text-[20px] font-black tracking-wider text-white uppercase leading-none font-sans drop-shadow-sm">
               TEMPORARY STUDENT PASS
             </h2>
-            <div className="text-[8.5px] font-medium tracking-widest text-red-100/90 uppercase mt-1">
-              OFFICIAL STUDENT IDENTIFICATION
-            </div>
           </div>
 
           {/* Elegant Blue Curved Arc Ribbon Below Red Header */}
@@ -125,15 +122,15 @@ export const IDCardPreview: React.FC<IDCardPreviewProps> = ({
           {/* Intake & Academic Year Information Grid */}
           <div className="bg-slate-50/95 rounded-xl p-3.5 border border-slate-200/90 space-y-2.5 my-1 shadow-xs">
             <div className="flex justify-between items-center">
-              <span className="font-bold text-slate-500 uppercase text-[10.5px] tracking-wider">Intake:</span>
-              <span className="font-black text-[#c8102e] tracking-tight text-[16px]">
+              <span className="font-bold text-slate-500 uppercase text-[12px] tracking-wider">Intake:</span>
+              <span className="font-black text-[#c8102e] tracking-tight text-[19px]">
                 {currentIntake}
               </span>
             </div>
             <div className="h-[1px] bg-slate-200/80 w-full" />
             <div className="flex justify-between items-center">
-              <span className="font-bold text-slate-500 uppercase text-[10.5px] tracking-wider">Academic Year:</span>
-              <span className="font-black text-[#002d62] tracking-tight text-[16px]">
+              <span className="font-bold text-slate-500 uppercase text-[12px] tracking-wider">Academic Year:</span>
+              <span className="font-black text-[#002d62] tracking-tight text-[19px]">
                 {config.academicYear || '2026/2027'}
               </span>
             </div>
