@@ -194,12 +194,9 @@ export const App: React.FC = () => {
 
   const handlePrintPdf = async () => {
     try {
-      let docBlob = lastGeneratedPdfBlob;
-      if (!docBlob) {
-        const doc = await generateBulkIDPDF(config);
-        docBlob = doc.output('blob');
-        setLastGeneratedPdfBlob(docBlob);
-      }
+      const doc = await generateBulkIDPDF(config);
+      const docBlob = doc.output('blob');
+      setLastGeneratedPdfBlob(docBlob);
 
       const blobUrl = URL.createObjectURL(docBlob);
       const iframe = document.createElement('iframe');

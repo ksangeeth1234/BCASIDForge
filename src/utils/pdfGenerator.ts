@@ -188,7 +188,7 @@ export const generateBulkIDPDF = async (
 
         doc.setTextColor(255, 255, 255);
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(9.5);
+        doc.setFontSize(10.5);
         doc.text('TEMPORARY STUDENT PASS', posX + cardWidth / 2, posY + 8.5, { align: 'center' });
 
         // 4. Blue Curved Wave Divider Below Header
@@ -216,16 +216,16 @@ export const generateBulkIDPDF = async (
         // 6. Programme Name (with dynamic font sizing)
         const progY = contentStartY + 4.8;
         doc.setFont('helvetica', 'normal');
-        doc.setFontSize(5.0);
+        doc.setFontSize(6.0);
         doc.setTextColor(100, 110, 120);
         doc.text('ACADEMIC PROGRAMME', posX + cardWidth / 2, progY, { align: 'center' });
 
         const progName = config.programmeName || 'BSc (Hons) Computer Science';
-        let progFontSize = 13;
+        let progFontSize = 14.5;
         if (progName.length > 45) {
-          progFontSize = 9.5;
+          progFontSize = 10.5;
         } else if (progName.length > 28) {
-          progFontSize = 11;
+          progFontSize = 12.5;
         }
         doc.setFont('helvetica', 'bold');
         doc.setFontSize(progFontSize);
@@ -246,12 +246,12 @@ export const generateBulkIDPDF = async (
 
         // Intake Row
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(6.5);
+        doc.setFontSize(7.5);
         doc.setTextColor(100, 116, 139);
         doc.text('INTAKE:', posX + 5, boxY + 5.5);
 
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(10.5);
+        doc.setFontSize(11.5);
         doc.setTextColor(200, 16, 46);
         doc.text(currentIntake, posX + cardWidth - 5, boxY + 5.5, { align: 'right' });
 
@@ -261,12 +261,12 @@ export const generateBulkIDPDF = async (
 
         // Academic Year Row
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(6.5);
+        doc.setFontSize(7.5);
         doc.setTextColor(100, 116, 139);
         doc.text('ACADEMIC YEAR:', posX + 5, boxY + 12.6);
 
         doc.setFont('helvetica', 'bold');
-        doc.setFontSize(10.5);
+        doc.setFontSize(11.5);
         doc.setTextColor(0, 45, 98);
         doc.text(currentAcademicYear, posX + cardWidth - 5, boxY + 12.6, { align: 'right' });
 
